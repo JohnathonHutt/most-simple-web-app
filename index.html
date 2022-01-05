@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Most Simple Web App</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: black;
+            text-align: center;
+        }
+        h1 { 
+            color: white;
+            display: inline-block;
+         }
+        .flex-wrapper {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        .block {
+            height: 200px;
+            width: 200px;
+            display: inline-block;
+            margin: 2px;
+            border-radius: 4px;
+        }
+        .block:hover {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click The Blocks!</h1>
+    <div id="block-box"></div>
+    <script>
+        const colors = [
+            'red',
+            'blue',
+            'green',
+            'yellow',
+            'white'
+        ];
+        let colorIndex = 0;
+        function addABlock() {
+            const newBlock = document.createElement('div');
+            newBlock.classList.add('block');
+            const color = colors[colorIndex];
+            console.log('color beginning: ', colorIndex, colors);
+            newBlock.style.backgroundColor = color;
+            newBlock.style.border = `4px solid ${color}`;
+            newBlock.addEventListener('click', addABlock);
+
+            const blockBox = document.getElementById('block-box');
+            blockBox.appendChild(newBlock);
+
+            if (colorIndex === colors.length - 1) {
+                colorIndex = 0
+            } else {
+                colorIndex += 1;
+            }
+            console.log('color end: ', colorIndex, colors[colorIndex]);
+        }
+
+        addABlock();
+    </script>
+</body>
+</html>
